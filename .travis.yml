@@ -1,0 +1,17 @@
+branches:
+  only:
+  - develop
+  - master
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+  - node_modules
+install:
+  # `awscli` is required for invalidation of CloudFront distributions.
+  - pip install --user awscli
+  - yarn install
+script:
+  - yarn test
+deploy:
