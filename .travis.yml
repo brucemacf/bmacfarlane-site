@@ -14,3 +14,4 @@ install:
   - yarn install
 script:
   - yarn test
+  - aws s3 sync . "s3://bmacfarlane-website" --delete
