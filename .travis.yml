@@ -21,8 +21,9 @@ jobs:
       script: ".travis/run_build_and_deploy.sh"
 stages:
   - test
-  - name: deploy
-    if: (branch = develop) AND (NOT (type IN (push, pull_request)))
+  - deploy
+  # - name: deploy
+  #   if: (branch = develop) AND (NOT (type IN (push, pull_request)))
 
 # script:
 #   - yarn test
