@@ -12,8 +12,20 @@ install:
   # `awscli` is required for invalidation of CloudFront distributions.
   - pip install --user awscli
   - yarn install
-script:
-  - yarn test
-  - yarn build
-  - cd build/
-  - aws s3 sync . "s3://bmacfarlane-website" --delete
+
+jobs:
+  include:
+    - stage: test
+      script: ".travis/run_tests.sh"
+    - stage: deploy
+      script: ".travis/run_build_and_deploy.sh"
+stages:
+  - test
+  - name: deploy
+    if: (branch = develop) AND (NOT(type IN (push, pull_request)))
+
+# script:
+#   - yarn test
+#   - yarn build
+#   - cd build/
+#   - aws s3 sync . "s3://bmacfarlane-website" --delete
