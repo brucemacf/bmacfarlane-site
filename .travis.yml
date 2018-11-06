@@ -22,7 +22,7 @@ jobs:
 stages:
   - test
   - name: deploy
-    if: (branch = develop) AND (NOT(type IN (push, pull_request)))
+    if: (branch = develop) AND (NOT (type IN (push, pull_request)))
 
 # script:
 #   - yarn test
